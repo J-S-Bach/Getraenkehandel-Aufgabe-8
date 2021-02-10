@@ -4,21 +4,16 @@ public class CentralStorage extends Location{
 
 	public CentralStorage(String name) {
 		super(name);
-		/*this.setCapacity( , 200);
-		this.setCapacity( , 400);
-		this.setCapacity( , 200);
-		this.setCapacity( , 300);
-		this.setCapacity( , 200);
+		this.setCapacity(new WaterNonSparkling(BottleType.GLAS), 200);
+		this.setCapacity(new WaterSparkling(BottleType.PLASTIC), 400);
+		this.setCapacity(new AppleJuice(30), 200);
+		this.setCapacity(new OrangeJuice(40), 400);
+		this.setCapacity(new Lemonade(35), 300);
+		this.setCapacity(new Beer(7), 200);
 		this.fill();
-		*/
-		System.out.println("Capacitiy missing");
 	}
 	
 	public void fill() {	//on startup after capacity is set
 		drinks = capacity;
-	}
-	
-	public void moveDrinks(Location loc, DrinkType drinkType, int boxes) {
-		//loc.addDrink(drinkType, drinkType.)
 	}
 }
