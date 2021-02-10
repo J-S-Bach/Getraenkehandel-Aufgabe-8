@@ -5,7 +5,6 @@ public class Lemonade extends DrinkType {
 
     public Lemonade(int fruitContent) {
         this.maxBottles = 12;
-        this.bottles = maxBottles;
         this.type = "Limonade";
         this.fruitContent = fruitContent;
     }
