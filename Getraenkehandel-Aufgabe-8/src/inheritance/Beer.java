@@ -5,8 +5,7 @@ public class Beer extends DrinkType {
 
     public Beer(int alcoholicContent) {
         this.maxBottles = 24;
-        this.bottles = maxBottles;
-        this.type = "Apfelsaft";
+        this.type = "Bier";
         this.alcoholicContent = alcoholicContent;
     }
 

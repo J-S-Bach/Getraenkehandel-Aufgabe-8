@@ -5,7 +5,6 @@ public class WaterSparkling extends DrinkType {
 
     public WaterSparkling(BottleType bottleType) {
         this.maxBottles = 12;
-        this.bottles = maxBottles;
         this.type = "Mineralwasser mit Kohlensäure";
         this.bottleType = bottleType;
     }
