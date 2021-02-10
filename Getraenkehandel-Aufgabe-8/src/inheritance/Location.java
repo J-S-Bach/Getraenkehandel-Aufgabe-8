@@ -50,4 +50,12 @@ public class Location {
 	public void fillFromCentral(DrinkType drinkType, CentralStorage central) {
 		this.addDrink(drinkType, drinkType.movableBottles(this.getMissing(drinkType)) - central.removeDrink(drinkType, drinkType.movableBottles(this.getMissing(drinkType))));
 	}
+	
+	public String toString() {
+		String out = this.name+":\n";
+		for (Map.Entry<DrinkType, Integer> entry : this.drinks.entrySet()) {
+		    out+=entry.getKey().getType()+" Bottles: "+entry.getValue()+" / "+this.capacity.get(entry.getKey())+" (Boxes: "+entry.getKey().bottlesToBoxes(entry.getValue())+" / "+entry.getKey().bottlesToBoxes(this.capacity.get(entry.getKey()))+")\n";
+		}
+		return out;
+	}
 }

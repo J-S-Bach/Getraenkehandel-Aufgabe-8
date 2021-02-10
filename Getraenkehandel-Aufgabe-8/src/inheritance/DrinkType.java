@@ -2,10 +2,9 @@ package inheritance;
 
 public abstract class DrinkType {
 	protected String type = "";
-	protected int maxBottles = 0;	//per box
+	protected int maxBottles = 0; // per box
 	protected int bottles = 0;
-	//kasten = bottles/maxBottles
-
+	// kasten = bottles/maxBottles
 
 	public String getType() {
 		return type;
@@ -22,12 +21,16 @@ public abstract class DrinkType {
 	public void setBottles(int bottles) {
 		this.bottles = Math.min(bottles, maxBottles);
 	}
-	
+
 	public int boxesToBottles(int boxes) {
-		return maxBottles*boxes;
+		return maxBottles * boxes;
 	}
-	
+
+	public int bottlesToBoxes(int bottles) {
+		return Math.floorDiv(bottles, maxBottles);
+	}
+
 	public int movableBottles(int wantToAmount) {
-		return Math.floorDiv(wantToAmount, this.getMaxBottles())*this.getMaxBottles();
+		return Math.floorDiv(wantToAmount, this.getMaxBottles()) * this.getMaxBottles();
 	}
 }
