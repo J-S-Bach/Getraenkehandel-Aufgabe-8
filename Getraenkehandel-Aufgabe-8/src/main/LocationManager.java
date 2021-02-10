@@ -6,7 +6,8 @@ import inheritance.CentralStorage;
 
 public class LocationManager {
 	
-	private Location[] locations = new Location[3];
+	private Location[] locations = new Location[2];
+	private Location central = null;
 	
 	public LocationManager() {
 		
@@ -31,11 +32,9 @@ public class LocationManager {
 		standort2.setCapacity(drinkType, 100);
 		standort2.setCapacity(drinkType, 150);
 		*/
-		locations[0] = zentral;
-		locations[1] = standort1;
-		locations[2] = standort2;
-		
+		central = zentral;
+		locations[0] = standort1;
+		locations[1] = standort2;
 	}
-	
 	
 }
