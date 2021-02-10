@@ -4,11 +4,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Location {
-	private String name = "";
-	private Map<DrinkType, Integer> capacity = new HashMap<>();
-	private Map<DrinkType, Integer> drinks = new HashMap<>();
+	protected String name = "";
+	protected Map<DrinkType, Integer> capacity = new HashMap<>();
+	protected Map<DrinkType, Integer> drinks = new HashMap<>();
 	
-	public Location() {
-		
+	public Location(String name) {
+		this.name = name;
 	}
+	
+	public void setCapacity(DrinkType drinkType, int amount) {
+		capacity.put(drinkType, new Integer(amount));
+	}
+	
 }
