@@ -17,8 +17,4 @@ public class CentralStorage extends Location{
 	public void fill() {	//on startup after capacity is set
 		drinks = capacity;
 	}
-	
-	public void moveDrinks(Location loc, DrinkType drinkType, int boxes) {
-		//loc.addDrink(drinkType, drinkType.)
-	}
 }

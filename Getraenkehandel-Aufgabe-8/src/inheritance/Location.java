@@ -30,10 +30,24 @@ public class Location {
 		Integer currentAmount = drinks.get(drinkType);
 		if (currentAmount < amount) {
 			drinks.put(drinkType, 0);
-			return amount - currentAmount;
+			return amount - currentAmount;	//returns what is too much
 		}
 		drinks.put(drinkType, currentAmount - amount);
 		return 0;
 	}
-
+	
+	public int getMissing(DrinkType drinkType) {
+		return this.capacity.get(drinkType) - this.drinks.get(drinkType);
+	}
+	
+	public boolean moveDrinks(Location loc, DrinkType drinkType, int boxes) {
+		if(drinkType.movableBottles(this.drinks.get(drinkType)) < drinkType.boxesToBottles(boxes))
+			return false;	//not enough bottles in storage
+		this.addDrink(drinkType, loc.addDrink(drinkType, drinkType.movableBottles(drinkType.boxesToBottles(boxes))));
+		return true;
+	}
+	
+	public void fillFromCentral(DrinkType drinkType, CentralStorage central) {
+		this.addDrink(drinkType, drinkType.movableBottles(this.getMissing(drinkType)) - central.removeDrink(drinkType, drinkType.movableBottles(this.getMissing(drinkType))));
+	}
 }
