@@ -1,7 +1,7 @@
 package inheritance;
 
 public class OrangeJuice extends DrinkType {
-    private int fruitContent;
+    private final int fruitContent;
 
     public OrangeJuice(int fruitContent) {
         this.maxBottles = 6;
@@ -11,5 +11,10 @@ public class OrangeJuice extends DrinkType {
 
     public int getFruitContent() {
         return fruitContent;
+    }
+
+    @Override
+    public String getAttributes() {
+        return "Fruchtgehalt: " + getFruitContent() + "%";
     }
 }
