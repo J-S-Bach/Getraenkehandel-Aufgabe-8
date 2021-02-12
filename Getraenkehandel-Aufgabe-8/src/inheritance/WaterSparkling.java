@@ -1,7 +1,7 @@
 package inheritance;
 
 public class WaterSparkling extends DrinkType {
-    private BottleType bottleType;
+    private final BottleType bottleType;
 
     public WaterSparkling(BottleType bottleType) {
         this.maxBottles = 12;
@@ -11,5 +11,10 @@ public class WaterSparkling extends DrinkType {
 
     public BottleType getBottleType() {
         return bottleType;
+    }
+
+    @Override
+    public String getAttributes() {
+        return "Flaschentyp: " + getBottleType();
     }
 }

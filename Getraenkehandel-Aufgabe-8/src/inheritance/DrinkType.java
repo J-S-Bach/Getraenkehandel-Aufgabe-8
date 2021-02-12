@@ -25,4 +25,6 @@ public abstract class DrinkType {
 	public int movableBottles(int wantToAmount) {
 		return Math.floorDiv(wantToAmount, this.getMaxBottles()) * this.getMaxBottles();
 	}
+
+	public abstract String getAttributes();
 }

@@ -58,4 +58,16 @@ public class Location {
 		}
 		return out;
 	}
+
+	public String getName() {
+		return name;
+	}
+
+	public Map<DrinkType, Integer> getCapacity() {
+		return capacity;
+	}
+
+	public Map<DrinkType, Integer> getDrinks() {
+		return drinks;
+	}
 }
