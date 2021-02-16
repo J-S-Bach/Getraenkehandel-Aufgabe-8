@@ -28,13 +28,12 @@ public class Location {
 	public int getDrinkCapacity(DrinkType drinkType) {
 		return capacity.get(drinkType);
 	}
-	
+
 	public DrinkType[] getDrinkTypes() {
 		return drinks.keySet().toArray(new DrinkType[drinks.keySet().size()]);
 	}
 
 	public int getDrinkAmount(DrinkType drinkType) {
-		System.err.println(drinks.get(drinkType));
 		return drinks.get(drinkType);
 	}
 
@@ -67,7 +66,6 @@ public class Location {
 
 	public boolean fillFromCentral(DrinkType drinkType, CentralStorage central) {
 		int missingAmount = drinkType.movableBottles(this.getMissing(drinkType));
-		System.err.println(central.getDrinkAmount(drinkType));
 		if (central.getDrinkAmount(drinkType) < missingAmount)
 			return false;
 		this.addDrink(drinkType, missingAmount);
@@ -76,13 +74,13 @@ public class Location {
 	}
 
 	public String toString() {
-		String out = this.name + ":\n";
-		for (Map.Entry<DrinkType, Integer> entry : this.drinks.entrySet()) {
-			out += entry.getKey().getType() + " Bottles: " + entry.getValue() + " / "
-					+ this.capacity.get(entry.getKey()) + " (Boxes: " + entry.getKey().bottlesToBoxes(entry.getValue())
-					+ " / " + entry.getKey().bottlesToBoxes(this.capacity.get(entry.getKey())) + ")\n";
+		StringBuilder out = new StringBuilder();
+		for (DrinkType dt : this.getDrinkTypes()) {
+			out.append(dt.getType() + ": " + this.getDrinkAmount(dt) + "/" + this.getDrinkCapacity(dt) + " Bottles ("
+					+ dt.bottlesToBoxes(this.getDrinkAmount(dt)) + "/" + dt.bottlesToBoxes(this.getDrinkCapacity(dt))
+					+ " Boxes)\n");
 		}
-		return out;
+		return out.toString();
 	}
 
 	/*

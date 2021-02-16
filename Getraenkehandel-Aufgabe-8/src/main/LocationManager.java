@@ -29,10 +29,7 @@ public class LocationManager {
 		standort2.setCapacity(new OrangeJuice(40), 200);
 		standort2.setCapacity(new Lemonade(35), 100);
 		standort2.setCapacity(new Beer(7), 150);
-		System.out.println(standort2.toString());
-		standort2.fillFromCentral(standort2.getDrinkTypes()[0], zentral);
-		System.out.println(standort2.toString());
-		
+
 		central = zentral;
 		//System.out.println(central.toString());
 		locations[0] = standort1;
