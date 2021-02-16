@@ -1,6 +1,6 @@
 package main;
 
-import exports.DataExporter;
+//import exports.DataExporter;
 import inheritance.Location;
 
 import java.util.ArrayList;
@@ -16,9 +16,9 @@ public class Main {
 		locations.add(manager.getCentral());
 		locations.addAll(Arrays.asList(manager.getLocations()));
 
-		String s = DataExporter.getLocationsDataInJSONFormat(locations);
+		//String s = DataExporter.getLocationsDataInJSONFormat(locations);
 
-		System.out.println(s);
+		System.out.println(locations);
 	}
 
 }
