@@ -1,7 +1,7 @@
 package inheritance;
 
 public class Beer extends DrinkType {
-    private int alcoholicContent;
+    private final int alcoholicContent;
 
     public Beer(int alcoholicContent) {
         this.maxBottles = 24;
@@ -11,5 +11,10 @@ public class Beer extends DrinkType {
 
     public int getAlcoholicContent() {
         return alcoholicContent;
+    }
+
+    @Override
+    public String getAttributes() {
+        return "Alkoholgehalt: " + getAlcoholicContent() + "%";
     }
 }

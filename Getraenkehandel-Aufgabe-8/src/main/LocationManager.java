@@ -35,5 +35,12 @@ public class LocationManager {
 		locations[0] = standort1;
 		locations[1] = standort2;
 	}
-	
+
+	public Location[] getLocations() {
+		return locations;
+	}
+
+	public Location getCentral() {
+		return central;
+	}
 }

@@ -20,7 +20,7 @@ public abstract class DrinkType {
 	public int hashCode() {
 		return Objects.hash(type, maxBottles);
 	}
-	
+
 	public String getType() {
 		return type;
 	}
@@ -33,11 +33,23 @@ public abstract class DrinkType {
 		return maxBottles * boxes;
 	}
 
+	/**
+	 * Takes given bottles and returns boxes while ignoring rest bottles.
+	 * @param bottles
+	 * @return boxes
+	 */
 	public int bottlesToBoxes(int bottles) {
 		return Math.floorDiv(bottles, maxBottles);
 	}
 
+	/**
+	 *
+	 * @param wantToAmount
+	 * @return
+	 */
 	public int movableBottles(int wantToAmount) {
 		return Math.floorDiv(wantToAmount, this.getMaxBottles()) * this.getMaxBottles();
 	}
+
+	public abstract String getAttributes();
 }
