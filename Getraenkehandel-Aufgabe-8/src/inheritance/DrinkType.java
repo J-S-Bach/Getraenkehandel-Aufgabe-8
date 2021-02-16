@@ -2,11 +2,15 @@ package inheritance;
 
 import java.util.Objects;
 
+/**
+ * Creates a class "DrinkType".
+ * It contains standard methods for its subclasses like getter, setter and hashCode
+ * just like special ones like boxesToBottles or bottlesToBoxes.
+ */
 public abstract class DrinkType {
 	protected String type = "";
 
 	protected int maxBottles = 0;
-	//kasten = bottles/maxBottles
 
 	@Override
 	public boolean equals(Object o) {
@@ -28,24 +32,29 @@ public abstract class DrinkType {
 	public int getMaxBottles() {
 		return maxBottles;
 	}
-  
+
+	/**
+	 * Takes given boxes and returns bottles.
+	 * @param boxes amount
+	 * @return bottles amount
+	 */
 	public int boxesToBottles(int boxes) {
 		return maxBottles * boxes;
 	}
 
 	/**
 	 * Takes given bottles and returns boxes while ignoring rest bottles.
-	 * @param bottles
-	 * @return boxes
+	 * @param bottles amount
+	 * @return boxes amount
 	 */
 	public int bottlesToBoxes(int bottles) {
 		return Math.floorDiv(bottles, maxBottles);
 	}
 
 	/**
-	 *
-	 * @param wantToAmount
-	 * @return
+	 * Takes given bottles and returns amount of bottles that are movable.
+	 * @param wantToAmount given amount
+	 * @return movable bottles
 	 */
 	public int movableBottles(int wantToAmount) {
 		return Math.floorDiv(wantToAmount, this.getMaxBottles()) * this.getMaxBottles();

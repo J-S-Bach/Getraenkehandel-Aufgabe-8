@@ -83,6 +83,22 @@ public class Location {
 		return out.toString();
 	}
 
+	/**
+	 * Returns the capacity for all types of drinks
+	 * @return capacity
+	 */
+	public Map<DrinkType, Integer> getCapacity() {
+		return capacity;
+	}
+
+	/**
+	 * Returns all available types of Drinks
+	 * @return drinktypes
+	 */
+	public Map<DrinkType, Integer> getDrinks() {
+		return drinks;
+	}
+
 	/*
 	 * public int addDrinkAuto(DrinkType drinkType, Integer amount) { Integer
 	 * currentAmount = drinks.get(drinkType); if (currentAmount + amount >
