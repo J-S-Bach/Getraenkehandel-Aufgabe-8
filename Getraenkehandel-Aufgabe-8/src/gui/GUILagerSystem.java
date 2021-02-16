@@ -181,7 +181,7 @@ public class GUILagerSystem {
 		panelMenu.add(btnSell);
 		
 		JButton btnExportCSV = new JButton("Lagerbest\u00E4nde als CSV exportieren");
-		btnExportCSV.setBounds(450, 420, 203, 23);
+		btnExportCSV.setBounds(404, 402, 249, 41);
 		panelMenu.add(btnExportCSV);
 		
 		JButton btnStock = new JButton("Lagerbestand");
