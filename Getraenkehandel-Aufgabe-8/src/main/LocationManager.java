@@ -34,6 +34,8 @@ public class LocationManager {
 		//System.out.println(central.toString());
 		locations[0] = standort1;
 		locations[1] = standort2;
+		
+		
 	}
 
 	public Location[] getLocations() {

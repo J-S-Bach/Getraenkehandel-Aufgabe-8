@@ -8,6 +8,10 @@ import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Vector;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
@@ -15,33 +19,44 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import inheritance.Location;
+import main.LocationManager;
 
+import gui.GUIHelperMethods;
+
+import javax.swing.JTabbedPane;
+import java.awt.Window.Type;
+import java.awt.Color;
+import javax.swing.SwingConstants;
+import java.awt.Font;
+import javax.swing.UIManager;
+import java.awt.Component;
+import javax.swing.Box;
 
 public class GUILagerSystem {
 
-	private JFrame frame;
-	private JPanel panelMenu;
-	private JPanel panelBooking;
-	private JPanel panelSell;
-	private JTable tableBookingOf;
-	private JTable tableBookingTo;
-	private JTable tableSellOf;
-	private JTextField txtBookingQuantityInput;
-	private JTextField txtSellQuantityInput;
-
+	private JFrame frmGetrnkeladenAi;
+	private JTextField tfInputSellAmount;
+	private JTextField tfInputRebookingAmount;
 
 	/**
 	 * Launch the application.
 	 */
+
+	static List<Location> locations = new ArrayList<>();
+	static LocationManager manager = new LocationManager();
+	static GUIHelperMethods helper = new GUIHelperMethods();
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					GUILagerSystem window = new GUILagerSystem();
-					window.frame.setVisible(true);
+					window.frmGetrnkeladenAi.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+
 			}
 		});
 	}
@@ -64,179 +79,132 @@ public class GUILagerSystem {
 	 */
 	private void initialize() {
 		// Frames---------
-		frame = new JFrame();
-		frame.setBounds(100, 100, 675, 489);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(new CardLayout(0, 0));
-		// ---------------------------------------------------------------------------------------------
-		// Panels----------
-		final JPanel panelMenu = new JPanel();
-		frame.getContentPane().add(panelMenu, "name_473979631140500");
-		panelMenu.setLayout(null);
-		panelMenu.setVisible(true);
-
-		final JPanel panelBooking = new JPanel();
-		frame.getContentPane().add(panelBooking, "name_473992955029000");
-		panelBooking.setLayout(null);
-		panelBooking.setVisible(false);
-
-		final JPanel panelSell = new JPanel();
-		frame.getContentPane().add(panelSell, "name_474000871403000");
+		frmGetrnkeladenAi = new JFrame();
+		frmGetrnkeladenAi.setType(Type.UTILITY);
+		frmGetrnkeladenAi.setTitle("Getränkeladen AI2021");
+		frmGetrnkeladenAi.setBounds(100, 100, 1012, 681);
+		frmGetrnkeladenAi.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmGetrnkeladenAi.getContentPane().setLayout(null);
+		
+		// Initialize Location
+		locations.add(manager.getCentral());
+		locations.addAll(Arrays.asList(manager.getLocations()));
+			
+		JPanel panelMainPanel = new JPanel();
+		panelMainPanel.setLayout(null);	
+			
+		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.setBounds(0, 635, 457, -635);
+		tabbedPane.setFont(new Font("Arial", Font.PLAIN, 12));
+		frmGetrnkeladenAi.getContentPane().add(tabbedPane);
+		
+		JPanel panelRebooking = new JPanel();
+		tabbedPane.addTab("Umbuchen", null, panelRebooking, null);
+		panelRebooking.setLayout(null);
+		tabbedPane.add(panelRebooking);
+		
+		JPanel panelSell = new JPanel();
+		tabbedPane.addTab("Verkaufen", null, panelSell, null);
 		panelSell.setLayout(null);
-		panelSell.setVisible(false);
-
-		// ---------------------------------------------------------------------------------------------
-		// PanelBuchen---------
-		JButton btnBooking = new JButton("Buchen");
-		btnBooking.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				panelBooking.setVisible(true);
-				panelMenu.setVisible(false);
-			}
-		});
-		btnBooking.setBounds(74, 108, 120, 50);
-		panelMenu.add(btnBooking);
-
-		JButton btnBackofBooking = new JButton("Zurück");
-		btnBackofBooking.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				panelBooking.setVisible(false);
-				panelMenu.setVisible(true);
-			}
-		});
-		btnBackofBooking.setBounds(560, 416, 89, 23);
-		panelBooking.add(btnBackofBooking);
-
-		JButton btnBookingBooking = new JButton("Jetzt Buchen");
-		btnBookingBooking.setBounds(265, 221, 130, 23);
-		panelBooking.add(btnBookingBooking);
-
-		JComboBox cbBookingOf = new JComboBox();
-		cbBookingOf.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-			}
-		});
-		cbBookingOf.setModel(new DefaultComboBoxModel(new String[] { "Standort1", "Zentrallager", "Standort2" }));
-		cbBookingOf.setToolTipText("");
-		cbBookingOf.setBounds(49, 35, 135, 22);
-		panelBooking.add(cbBookingOf);
-
-		JComboBox cbBookingTo = new JComboBox();
-		cbBookingTo.setModel(new DefaultComboBoxModel(new String[] { "Zentrallager", "Standort1", "Standort2" }));
-		cbBookingTo.setToolTipText("");
-		cbBookingTo.setBounds(487, 35, 135, 22);
-		panelBooking.add(cbBookingTo);
-
-		JComboBox cbBookingArticle = new JComboBox();
-		cbBookingArticle.setModel(new DefaultComboBoxModel(new String[] { "Mineralwasser, still",
-				"Mineralwasser, mit Kohlensäure", "Apfelsaft", "Orangensaft", "Limonade", "Bier" }));
-		cbBookingArticle.setBounds(265, 100, 127, 22);
-		panelBooking.add(cbBookingArticle);
-
-		JLabel lblBookingOf = new JLabel("von:");
-		lblBookingOf.setBounds(23, 39, 46, 14);
-		panelBooking.add(lblBookingOf);
-
-		JLabel lblBookingTo = new JLabel("nach:");
-		lblBookingTo.setBounds(453, 39, 46, 14);
-		panelBooking.add(lblBookingTo);
-
-		JLabel lblBookingRebooking = new JLabel("Umbuchen:");
-		lblBookingRebooking.setBounds(287, 39, 89, 14);
-		panelBooking.add(lblBookingRebooking);
-
-		JLabel lblBookingQuantity = new JLabel("Menge in Flaschen:");
-		lblBookingQuantity.setBounds(265, 156, 115, 14);
-		panelBooking.add(lblBookingQuantity);
-
-		tableBookingOf = new JTable();
-		tableBookingOf.setModel(new DefaultTableModel(new Object[][] {},
-				new String[] { "New column", "New column", "New column", "New column", "New column" }));
-		tableBookingOf.setBounds(10, 100, 230, 180);
-		panelBooking.add(tableBookingOf);
-
-		tableBookingTo = new JTable();
-		tableBookingTo.setModel(new DefaultTableModel(new Object[][] {},
-				new String[] { "New column", "New column", "New column", "New column", "New column" }));
-		tableBookingTo.setBounds(419, 100, 230, 180);
-		panelBooking.add(tableBookingTo);
-
-		txtBookingQuantityInput = new JTextField();
-		txtBookingQuantityInput.setToolTipText("Eingabe der Menge");
-		txtBookingQuantityInput.setBounds(265, 170, 86, 20);
-		panelBooking.add(txtBookingQuantityInput);
-		txtBookingQuantityInput.setColumns(10);
-
-		// ---------------------------------------------------------------------------------------------
-		// PanelVerkaufen
-		JButton btnSell = new JButton("Verkaufen");
-		btnSell.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				panelSell.setVisible(true);
-				panelMenu.setVisible(false);
-			}
-		});
-		btnSell.setBounds(404, 108, 120, 50);
-		panelMenu.add(btnSell);
 		
-		JButton btnExportCSV = new JButton("Lagerbest\u00E4nde als CSV exportieren");
-		btnExportCSV.setBounds(450, 420, 203, 23);
-		panelMenu.add(btnExportCSV);
-		
-		JButton btnStock = new JButton("Lagerbestand");
-		btnStock.setBounds(74, 248, 120, 82);
-		panelMenu.add(btnStock);
 
-		JButton btnBackOfSell = new JButton("Zurück");
-		btnBackOfSell.addActionListener(new ActionListener() {
+		JLabel lblSellProduct = new JLabel("Produkt");
+		lblSellProduct.setVerticalAlignment(SwingConstants.TOP);
+		lblSellProduct.setFont(new Font("Arial", Font.PLAIN, 12));
+		lblSellProduct.setBounds(10, 97, 60, 14);
+		panelSell.add(lblSellProduct);
+
+		JComboBox cbSellProduct = new JComboBox();
+		cbSellProduct.setModel(new DefaultComboBoxModel());
+		cbSellProduct.setFont(new Font("Arial", Font.PLAIN, 12));
+		cbSellProduct.setBounds(80, 93, 164, 22);
+		panelSell.add(cbSellProduct);
+
+		JComboBox cbSellDestination = new JComboBox();
+		cbSellDestination.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				panelSell.setVisible(false);
-				panelMenu.setVisible(true);
+				if (cbSellDestination.getSelectedItem() != null) {
+					cbSellProduct.setModel(new DefaultComboBoxModel(
+							helper.getProductFromLocation(cbSellDestination.getSelectedIndex(), locations)));
+				}
+
 			}
 		});
-		btnBackOfSell.setBounds(560, 416, 89, 23);
-		panelSell.add(btnBackOfSell);
+		cbSellDestination.setModel(new DefaultComboBoxModel(helper.getAllLocationNames(locations)));
+		cbSellDestination.setFont(new Font("Arial", Font.PLAIN, 12));
+		cbSellDestination.setBounds(80, 24, 164, 22);
+		panelSell.add(cbSellDestination);
 
-		JButton btnSell_SellNow = new JButton("Jetzt Verkaufen");
-		btnSell_SellNow.setBounds(265, 221, 130, 23);
-		panelSell.add(btnSell_SellNow);
+		JLabel lblSellAmount = new JLabel("Menge");
+		lblSellAmount.setVerticalAlignment(SwingConstants.TOP);
+		lblSellAmount.setFont(new Font("Arial", Font.PLAIN, 12));
+		lblSellAmount.setBounds(10, 161, 60, 14);
+		panelSell.add(lblSellAmount);
 
-		JComboBox cbSellOf = new JComboBox();
-		cbSellOf.setModel(new DefaultComboBoxModel(new String[] { "Zentrallager", "Standort1", "Standort2" }));
-		cbSellOf.setToolTipText("");
-		cbSellOf.setBounds(49, 35, 135, 22);
-		panelSell.add(cbSellOf);
+		tfInputSellAmount = new JTextField();
+		tfInputSellAmount.setFont(new Font("Arial", Font.PLAIN, 12));
+		tfInputSellAmount.setBounds(80, 158, 86, 20);
+		panelSell.add(tfInputSellAmount);
+		tfInputSellAmount.setColumns(10);
 
-		JComboBox cbSellArticle = new JComboBox();
-		cbSellArticle.setModel(new DefaultComboBoxModel(new String[] { "Mineralwasser, still",
-				"Mineralwasser, mit Kohlensäure", "Apfelsaft", "Orangensaft", "Limonade", "Bier" }));
-		cbSellArticle.setBounds(265, 100, 127, 22);
-		panelSell.add(cbSellArticle);
+		JLabel lblRebookDestinationFrom = new JLabel("Standort Von");
+		lblRebookDestinationFrom.setVerticalAlignment(SwingConstants.TOP);
+		lblRebookDestinationFrom.setFont(new Font("Arial", Font.PLAIN, 12));
+		lblRebookDestinationFrom.setBounds(10, 28, 70, 14);
+		panelRebooking.add(lblRebookDestinationFrom);
 
-		JLabel lblSellOf = new JLabel("von:");
-		lblSellOf.setBounds(23, 39, 46, 14);
-		panelSell.add(lblSellOf);
+		JComboBox cbRebookingDestinationFrom = new JComboBox();
+		cbRebookingDestinationFrom.setModel(new DefaultComboBoxModel(helper.getAllLocationNames(locations)));
+		cbRebookingDestinationFrom.setFont(new Font("Arial", Font.PLAIN, 12));
+		cbRebookingDestinationFrom.setBounds(90, 24, 164, 22);
+		panelRebooking.add(cbRebookingDestinationFrom);
 
-		JLabel lblSellSelling = new JLabel("UmVerkaufen:");
-		lblSellSelling.setBounds(287, 39, 89, 14);
-		panelSell.add(lblSellSelling);
+		JLabel lblRebooking1 = new JLabel("Umbuchen");
+		lblRebooking1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblRebooking1.setVerticalAlignment(SwingConstants.TOP);
+		lblRebooking1.setFont(new Font("Arial", Font.PLAIN, 12));
+		lblRebooking1.setBounds(127, 136, 70, 14);
+		panelRebooking.add(lblRebooking1);
 
-		JLabel lblSellQuantity = new JLabel("Menge in Flaschen:");
-		lblSellQuantity.setBounds(265, 156, 115, 14);
-		panelSell.add(lblSellQuantity);
+		JLabel lblRebookingProduct = new JLabel("Produkt");
+		lblRebookingProduct.setVerticalAlignment(SwingConstants.TOP);
+		lblRebookingProduct.setFont(new Font("Arial", Font.PLAIN, 12));
+		lblRebookingProduct.setBounds(10, 194, 60, 14);
+		panelRebooking.add(lblRebookingProduct);
 
-		tableSellOf = new JTable();
-		tableSellOf.setModel(new DefaultTableModel(new Object[][] {},
-				new String[] { "New column", "New column", "New column", "New column", "New column" }));
-		tableSellOf.setBounds(10, 100, 230, 180);
-		panelSell.add(tableSellOf);
+		JComboBox cbRebookingProduct = new JComboBox();
+		cbRebookingProduct.setFont(new Font("Arial", Font.PLAIN, 12));
+		cbRebookingProduct.setBounds(90, 190, 164, 22);
+		panelRebooking.add(cbRebookingProduct);
 
-		txtSellQuantityInput = new JTextField();
-		txtSellQuantityInput.setToolTipText("Eingabe der Menge");
-		txtSellQuantityInput.setBounds(265, 170, 86, 20);
-		panelSell.add(txtSellQuantityInput);
-		txtSellQuantityInput.setColumns(10);
+		JLabel lblRebookingAmount = new JLabel("Menge");
+		lblRebookingAmount.setVerticalAlignment(SwingConstants.TOP);
+		lblRebookingAmount.setFont(new Font("Arial", Font.PLAIN, 12));
+		lblRebookingAmount.setBounds(10, 249, 60, 14);
+		panelRebooking.add(lblRebookingAmount);
+
+		tfInputRebookingAmount = new JTextField();
+		tfInputRebookingAmount.setFont(new Font("Arial", Font.PLAIN, 12));
+		tfInputRebookingAmount.setColumns(10);
+		tfInputRebookingAmount.setBounds(90, 246, 86, 20);
+		panelRebooking.add(tfInputRebookingAmount);
+
+		JLabel lblRebookingDestinationTo = new JLabel("Standort Nach");
+		lblRebookingDestinationTo.setVerticalAlignment(SwingConstants.TOP);
+		lblRebookingDestinationTo.setFont(new Font("Arial", Font.PLAIN, 12));
+		lblRebookingDestinationTo.setBounds(10, 372, 86, 14);
+		panelRebooking.add(lblRebookingDestinationTo);
+
+		JComboBox cbRebookingDestinationTo = new JComboBox();
+		cbRebookingDestinationTo.setModel(new DefaultComboBoxModel(helper.getAllLocationNames(locations)));
+		cbRebookingDestinationTo.setFont(new Font("Arial", Font.PLAIN, 12));
+		cbRebookingDestinationTo.setBounds(90, 368, 164, 22);
+		panelRebooking.add(cbRebookingDestinationTo);
+
+		JButton btnNewButton = new JButton("Buchen");
+		btnNewButton.setFont(new Font("Arial", Font.PLAIN, 12));
+		btnNewButton.setBounds(115, 489, 115, 62);
+		panelRebooking.add(btnNewButton);
 
 		// ---------------------------------------------------------------------------------------------
 
