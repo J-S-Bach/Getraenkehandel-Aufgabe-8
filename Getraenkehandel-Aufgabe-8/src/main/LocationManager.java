@@ -31,7 +31,6 @@ public class LocationManager {
 		standort2.setCapacity(new Beer(7), 150);
 
 		central = zentral;
-		System.out.println(central.toString());
 		//System.out.println(central.toString());
 		locations[0] = standort1;
 		locations[1] = standort2;
