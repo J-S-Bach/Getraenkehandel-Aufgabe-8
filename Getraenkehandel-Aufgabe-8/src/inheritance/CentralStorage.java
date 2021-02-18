@@ -14,6 +14,8 @@ public class CentralStorage extends Location{
 	}
 	
 	public void fill() {	//on startup after capacity is set
-		drinks = capacity;
+		for(DrinkType dt : this.getDrinkTypes()) {
+			this.addDrink(dt, this.getDrinkCapacity(dt));
+		}
 	}
 }
