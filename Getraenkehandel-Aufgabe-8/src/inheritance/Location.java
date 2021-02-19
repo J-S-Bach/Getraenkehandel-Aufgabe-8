@@ -29,7 +29,8 @@ public class Location {
 	}
 
 	public int getDrinkCapacity(DrinkType drinkType) {
-		return capacity.get(drinkType);
+		Integer a = capacity.get(drinkType);
+		return a;
 	}
 
 	public DrinkType[] getDrinkTypes() {
@@ -67,12 +68,12 @@ public class Location {
 		return true;
 	}
 
-	public boolean fillFromCentral(DrinkType drinkType, CentralStorage central) {
+	public boolean fillFromLocation(DrinkType drinkType, Location selectedLocation) {
 		int missingAmount = drinkType.movableBottles(this.getMissing(drinkType));
-		if (central.getDrinkAmount(drinkType) < missingAmount)
+		if (selectedLocation.getDrinkAmount(drinkType) < missingAmount)
 			return false;
 		this.addDrink(drinkType, missingAmount);
-		central.removeDrink(drinkType, missingAmount);
+		selectedLocation.removeDrink(drinkType, missingAmount);
 		return true;
 	}
 

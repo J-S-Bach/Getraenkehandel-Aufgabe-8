@@ -49,7 +49,7 @@ public class LocationManager {
 	public void fillLocations(Location[] locations) {
 		for(Location l : locations) {
 			for(DrinkType dt : l.getDrinkTypes()) {
-				System.out.println(l.fillFromCentral(dt, this.central));
+				System.out.println(l.fillFromLocation(dt, this.central));
 			}
 		}
 	}
