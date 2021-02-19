@@ -5,7 +5,7 @@ import inheritance.*;
 public class LocationManager {
 	
 	private Location[] locations = new Location[2];
-	private Location central = null;
+	private CentralStorage central = null;
 	
 	public LocationManager() {
 		setupLocations();
@@ -44,5 +44,13 @@ public class LocationManager {
 
 	public Location getCentral() {
 		return central;
+	}
+	
+	public void fillLocations(Location[] locations) {
+		for(Location l : locations) {
+			for(DrinkType dt : l.getDrinkTypes()) {
+				System.out.println(l.fillFromCentral(dt, this.central));
+			}
+		}
 	}
 }
