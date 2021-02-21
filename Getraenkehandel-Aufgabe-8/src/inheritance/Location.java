@@ -68,32 +68,20 @@ public class Location {
 		return true;
 	}
 
-	public boolean fillFromLocation(DrinkType drinkType, Location selectedLocation) {
+	public void fillFromLocation(DrinkType drinkType, Location from) throws Exception {
 		int missingAmount = drinkType.movableBottles(this.getMissing(drinkType));
-		if (selectedLocation.getDrinkAmount(drinkType) < missingAmount)
-			return false;
+		if (from.getDrinkAmount(drinkType) < missingAmount) {
+			missingAmount = from.getDrinkAmount(drinkType);	//set amount to max of "from"
+			throw new Exception("Not enough " + drinkType.type + " -> Filling with max!");
+		}
 		this.addDrink(drinkType, missingAmount);
-		selectedLocation.removeDrink(drinkType, missingAmount);
-		return true;
+		from.removeDrink(drinkType, missingAmount);
 	}
 
-	/**
-	 * This method fills the entire location with the stock of an other location
-	 * @param FromLocation Is the location from which the inventory is debated
-	 * @return Returns True if it was able to debate the inventory
-	 */
-	public boolean fillLocationFromLocation(Location fromLocation) {
-		
-		DrinkType[] drinkType =  this.getDrinkTypes();
-		for (DrinkType element : drinkType) {
-			int missingAmount = element.movableBottles(this.getMissing(element));
-			if (fromLocation.getDrinkAmount(element) < missingAmount)
-				return false;
-			this.addDrink(element, missingAmount);
-			fromLocation.removeDrink(element, missingAmount);
+	public void fillEveryDrinkFromLocation(Location from) throws Exception {
+		for (DrinkType dt : this.getDrinkTypes()) {
+			this.fillFromLocation(dt, from);
 		}
-		return true;
-
 	}
 
 	public String toString() {
