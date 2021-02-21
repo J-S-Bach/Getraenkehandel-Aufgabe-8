@@ -46,11 +46,11 @@ public class LocationManager {
 		return central;
 	}
 	
-	public void fillLocations(Location[] locations) {
-		for(Location l : locations) {
-			for(DrinkType dt : l.getDrinkTypes()) {
-				System.out.println(l.fillFromLocation(dt, this.central));
-			}
-		}
-	}
+//	public void fillLocations(Location[] locations) {
+//		for(Location l : locations) {
+//			for(DrinkType dt : l.getDrinkTypes()) {
+//				//System.out.println(l.fillFromLocation(dt, this.central));
+//			}
+//		}
+//	}
 }

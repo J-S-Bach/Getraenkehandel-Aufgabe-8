@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+
 public class Location {
 	protected String name = "";
 	protected Map<DrinkType, Integer> capacity = new HashMap<>();
@@ -78,9 +79,15 @@ public class Location {
 		from.removeDrink(drinkType, missingAmount);
 	}
 
+		
 	public void fillEveryDrinkFromLocation(Location from) throws Exception {
 		for (DrinkType dt : this.getDrinkTypes()) {
-			this.fillFromLocation(dt, from);
+			try {
+				this.fillFromLocation(dt, from);
+			} catch (Exception e) {
+				
+			}
+			
 		}
 	}
 
