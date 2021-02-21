@@ -77,6 +77,25 @@ public class Location {
 		return true;
 	}
 
+	/**
+	 * This method fills the entire location with the stock of an other location
+	 * @param FromLocation Is the location from which the inventory is debated
+	 * @return Returns True if it was able to debate the inventory
+	 */
+	public boolean fillLocationFromLocation(Location fromLocation) {
+		
+		DrinkType[] drinkType =  this.getDrinkTypes();
+		for (DrinkType element : drinkType) {
+			int missingAmount = element.movableBottles(this.getMissing(element));
+			if (fromLocation.getDrinkAmount(element) < missingAmount)
+				return false;
+			this.addDrink(element, missingAmount);
+			fromLocation.removeDrink(element, missingAmount);
+		}
+		return true;
+
+	}
+
 	public String toString() {
 		StringBuilder out = new StringBuilder();
 		for (DrinkType dt : this.getDrinkTypes()) {
