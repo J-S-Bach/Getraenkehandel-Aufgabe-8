@@ -86,6 +86,7 @@ public class Location {
 
 	public String toString() {
 		StringBuilder out = new StringBuilder();
+		out.append(this.getName()+":\n");
 		for (DrinkType dt : this.getDrinkTypes()) {
 			out.append(dt.getType() + ": " + this.getDrinkAmount(dt) + "/" + this.getDrinkCapacity(dt) + " Bottles ("
 					+ dt.bottlesToBoxes(this.getDrinkAmount(dt)) + "/" + dt.bottlesToBoxes(this.getDrinkCapacity(dt))
