@@ -6,7 +6,7 @@ public abstract class DrinkType {
 	protected String type = "";
 
 	protected int maxBottles = 0;
-	//kasten = bottles/maxBottles
+	//box = bottles/maxBottles
 
 	@Override
 	public boolean equals(Object o) {
