@@ -20,7 +20,7 @@ public abstract class DrinkType {
 	public int hashCode() {
 		return Objects.hash(type, maxBottles);
 	}
-
+	
 	public String getType() {
 		return type;
 	}

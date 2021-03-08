@@ -1,7 +1,10 @@
 package inheritance;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class Location {
 	protected String name = "";
@@ -26,7 +29,8 @@ public class Location {
 	}
 
 	public int getDrinkCapacity(DrinkType drinkType) {
-		return capacity.get(drinkType);
+		Integer a = capacity.get(drinkType);
+		return a;
 	}
 
 	public DrinkType[] getDrinkTypes() {
@@ -64,17 +68,25 @@ public class Location {
 		return true;
 	}
 
-	public boolean fillFromCentral(DrinkType drinkType, CentralStorage central) {
+	public void fillFromLocation(DrinkType drinkType, Location from) throws Exception {
 		int missingAmount = drinkType.movableBottles(this.getMissing(drinkType));
-		if (central.getDrinkAmount(drinkType) < missingAmount)
-			return false;
+		if (from.getDrinkAmount(drinkType) < missingAmount) {
+			missingAmount = from.getDrinkAmount(drinkType);	//set amount to max of "from"
+			throw new Exception("Not enough " + drinkType.type + " -> Filling with max!");
+		}
 		this.addDrink(drinkType, missingAmount);
-		central.removeDrink(drinkType, missingAmount);
-		return true;
+		from.removeDrink(drinkType, missingAmount);
+	}
+
+	public void fillEveryDrinkFromLocation(Location from) throws Exception {
+		for (DrinkType dt : this.getDrinkTypes()) {
+			this.fillFromLocation(dt, from);
+		}
 	}
 
 	public String toString() {
 		StringBuilder out = new StringBuilder();
+		out.append(this.getName()+":\n");
 		for (DrinkType dt : this.getDrinkTypes()) {
 			out.append(dt.getType() + ": " + this.getDrinkAmount(dt) + "/" + this.getDrinkCapacity(dt) + " Bottles ("
 					+ dt.bottlesToBoxes(this.getDrinkAmount(dt)) + "/" + dt.bottlesToBoxes(this.getDrinkCapacity(dt))
