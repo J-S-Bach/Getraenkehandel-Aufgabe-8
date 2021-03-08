@@ -158,6 +158,7 @@ public class Location {
 	/**
 	 * Returns this location as a string
 	 */
+	@Override
 	public String toString() {
 		StringBuilder out = new StringBuilder();
 		out.append(this.getName()+":\n");
