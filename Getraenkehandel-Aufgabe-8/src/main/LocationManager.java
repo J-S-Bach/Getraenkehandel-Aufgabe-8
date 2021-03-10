@@ -46,11 +46,25 @@ public class LocationManager {
 		return central;
 	}
 	
-//	public void fillLocations(Location[] locations) {
-//		for(Location l : locations) {
-//			for(DrinkType dt : l.getDrinkTypes()) {
-//				//System.out.println(l.fillFromLocation(dt, this.central));
-//			}
-//		}
-//	}
+	public void fillLocations(Location[] locations) throws Exception {
+		for (Location l : locations) {
+			for (DrinkType dt : l.getDrinkTypes()) {
+				l.fillFromLocation(dt, this.central);
+			}
+		}
+	}
+	
+	public void autoFill() {
+		for (Location l : locations) {
+			for (DrinkType dt : l.getDrinkTypes()) {
+				if (l.getMissing(dt) > central.getDrinkAmount(dt)) {
+					central.addDrink(dt, central.getMissing(dt));
+				}
+				try {
+					l.fillFromLocation(dt, central);
+				} catch (Exception e) {}
+			}
+		}
+	
+	}
 }

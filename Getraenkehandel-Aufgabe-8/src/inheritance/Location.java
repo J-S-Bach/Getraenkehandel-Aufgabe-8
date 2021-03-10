@@ -73,7 +73,7 @@ public class Location {
 		int missingAmount = drinkType.movableBottles(this.getMissing(drinkType));
 		if (from.getDrinkAmount(drinkType) < missingAmount) {
 			missingAmount = from.getDrinkAmount(drinkType);	//set amount to max of "from"
-			throw new Exception("Not enough " + drinkType.type + " -> Filling with max!");
+			throw new Exception("Not enough " + drinkType.type + " to fill capacity");
 		}
 		this.addDrink(drinkType, missingAmount);
 		from.removeDrink(drinkType, missingAmount);
