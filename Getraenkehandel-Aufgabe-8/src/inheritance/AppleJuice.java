@@ -1,8 +1,16 @@
 package inheritance;
 
+/**
+ * Creates a new subclass "AppleJuice" for DrinkType with given properties.
+ * @see DrinkType
+ */
 public class AppleJuice extends DrinkType {
     private final int fruitContent;
 
+    /**
+     * Creates properties "maxBottles", "type" and "fruitContent".
+     * @param fruitContent amount in percent
+     */
     public AppleJuice(int fruitContent) {
         this.maxBottles = 6;
         this.type = "Apfelsaft";
