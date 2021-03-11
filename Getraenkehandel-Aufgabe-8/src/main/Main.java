@@ -1,7 +1,8 @@
 package main;
 
-import exports.DataExporter;
+//import exports.DataExporter;
 import inheritance.Location;
+import inheritance.OrangeJuice;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -15,10 +16,17 @@ public class Main {
 		List<Location> locations = new ArrayList<>();
 		locations.add(manager.getCentral());
 		locations.addAll(Arrays.asList(manager.getLocations()));
+		
+		locations.get(2).addDrink(new OrangeJuice(20), 200);	
+		locations.get(2).removeDrink(locations.get(2).getDrinkTypes()[0], 50);
+		locations.get(2).moveDrinks(locations.get(1),locations.get(2).getDrinkTypes()[0], 2);
 
-		String s = DataExporter.getLocationsDataInJSONFormat(locations);
+		
+		//String s = DataExporter.getLocationsDataInJSONFormat(locations);  locations.get(2).getDrinkTypes()[0]
 
-		System.out.println(s);
+		System.out.println(locations);
+		
+
 	}
 
 }

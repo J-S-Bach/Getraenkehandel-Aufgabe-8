@@ -12,6 +12,7 @@ public abstract class DrinkType {
 
 	protected int maxBottles = 0;
 
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
@@ -24,7 +25,7 @@ public abstract class DrinkType {
 	public int hashCode() {
 		return Objects.hash(type, maxBottles);
 	}
-
+	
 	public String getType() {
 		return type;
 	}
