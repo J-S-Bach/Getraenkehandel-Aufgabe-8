@@ -10,6 +10,7 @@ import java.util.Map;
 
 /**
  * Converts the given data into external formats like XML or CSV.
+ * @author Cedric Schmitt & J. Sebastian Kirner
  */
 
 public class DataExporter {
@@ -19,7 +20,6 @@ public class DataExporter {
      *
      * @param location Location
      * @return String in csv format
-     * @author Cedric Schmitt & J. Sebastian Kirner
      */
     public static String getLocationDataInCSVFormat(Location location) {
         return getLocationDataInCSVFormat(location, true);
@@ -30,7 +30,6 @@ public class DataExporter {
      *
      * @param location Location
      * @return String in CSV format
-     * @author Cedric Schmitt & J. Sebastian Kirner
      */
     public static String getLocationDataInCSVFormat(Location location, boolean includeHeader) {
         Map<DrinkType, Integer> capacity = location.getCapacity();
@@ -76,7 +75,6 @@ public class DataExporter {
      *
      * @param location Location
      * @return String in XML format
-     * @author Cedric Schmitt & J. Sebastian Kirner
      */
     public static String getLocationDataInXMLFormat(Location location) {
         return getLocationDataInXMLFormat(location, true);
@@ -89,7 +87,6 @@ public class DataExporter {
      * @param location Location
      * @param includeHeader boolean if the header should be included
      * @return String in XML format
-     * @author Cedric Schmitt & J. Sebastian Kirner
      */
     public static String getLocationDataInXMLFormat(Location location, boolean includeHeader) {
         Map<DrinkType, Integer> capacity = location.getCapacity();
@@ -141,7 +138,6 @@ public class DataExporter {
      *
      * @param location Location
      * @return String in JSON format
-     * @author Cedric Schmitt & J. Sebastian Kirner
      */
     public static String getLocationDataInJSONFormat(Location location) {
         Map<DrinkType, Integer> capacity = location.getCapacity();
@@ -221,7 +217,6 @@ public class DataExporter {
      *
      * @param locations List
      * @return String in csv format
-     * @author Cedric Schmitt & J. Sebastian Kirner
      */
     public static String getLocationsDataInCSVFormat(List<Location> locations) {
         return getLocationsDataInCSVFormat(locations, true);
@@ -233,7 +228,6 @@ public class DataExporter {
      * @param locations     List
      * @param includeHeader boolean
      * @return String in csv format
-     * @author Cedric Schmitt & J. Sebastian Kirner
      */
     public static String getLocationsDataInCSVFormat(List<Location> locations, boolean includeHeader) {
         StringBuilder csv = new StringBuilder();
@@ -270,7 +264,6 @@ public class DataExporter {
      *
      * @param locations List
      * @return String in XML format
-     * @author Cedric Schmitt & J. Sebastian Kirner
      */
     public static String getLocationsDataInXMLFormat(List<Location> locations) {
         return getLocationsDataInXMLFormat(locations, true);
@@ -282,7 +275,6 @@ public class DataExporter {
      * @param locations     List
      * @param includeHeader boolean
      * @return String in XML format
-     * @author Cedric Schmitt & J. Sebastian Kirner
      */
     public static String getLocationsDataInXMLFormat(List<Location> locations, boolean includeHeader) {
         StringBuilder xml = new StringBuilder();
@@ -311,7 +303,6 @@ public class DataExporter {
      *
      * @param locations List
      * @return String in JSON format
-     * @author Cedric Schmitt & J. Sebastian Kirner
      */
     public static String getLocationsDataInJSONFormat(List<Location> locations) {
         StringBuilder json = new StringBuilder();

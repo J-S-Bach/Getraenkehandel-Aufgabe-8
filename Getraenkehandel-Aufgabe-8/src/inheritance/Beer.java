@@ -11,7 +11,7 @@ public class Beer extends DrinkType {
     /**
      * Creates properties "maxBottles", "type" and "alcoholicContent".
      * @param alcoholicContent amount in percent
-     * @author Cedric Schmitt & J. Sebastian Kirner
+     *
      */
     public Beer(int alcoholicContent) {
         this.maxBottles = 24;

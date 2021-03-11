@@ -39,7 +39,6 @@ public abstract class DrinkType {
 	 * Takes given boxes and returns bottles.
 	 * @param boxes amount
 	 * @return bottles amount
-	 * @author Cedric Schmitt & J. Sebastian Kirner
 	 */
 	public int boxesToBottles(int boxes) {
 		return maxBottles * boxes;
@@ -49,7 +48,6 @@ public abstract class DrinkType {
 	 * Takes given bottles and returns boxes while ignoring rest bottles.
 	 * @param bottles amount
 	 * @return boxes amount
-	 * @author Cedric Schmitt & J. Sebastian Kirner
 	 */
 	public int bottlesToBoxes(int bottles) {
 		return Math.floorDiv(bottles, maxBottles);
@@ -59,7 +57,6 @@ public abstract class DrinkType {
 	 * Takes given bottles and returns amount of bottles that are movable.
 	 * @param wantToAmount given amount
 	 * @return movable bottles
-	 * @author Cedric Schmitt & J. Sebastian Kirner
 	 */
 	public int movableBottles(int wantToAmount) {
 		return Math.floorDiv(wantToAmount, this.getMaxBottles()) * this.getMaxBottles();

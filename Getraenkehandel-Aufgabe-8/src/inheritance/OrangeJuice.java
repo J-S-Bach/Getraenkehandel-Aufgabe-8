@@ -11,7 +11,6 @@ public class OrangeJuice extends DrinkType {
     /**
      * Creates properties "maxBottles", "type" and "fruitContent".
      * @param fruitContent amount in percent
-     * @author Cedric Schmitt & J. Sebastian Kirner
      */
     public OrangeJuice(int fruitContent) {
         this.maxBottles = 6;

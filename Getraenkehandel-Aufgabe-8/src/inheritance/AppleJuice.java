@@ -11,7 +11,6 @@ public class AppleJuice extends DrinkType {
     /**
      * Creates properties "maxBottles", "type" and "fruitContent".
      * @param fruitContent amount in
-     * @author Cedric Schmitt & J. Sebastian Kirner
      */
     public AppleJuice(int fruitContent) {
         this.maxBottles = 6;
