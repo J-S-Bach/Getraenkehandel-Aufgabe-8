@@ -173,6 +173,7 @@ public class Location {
   /**
 	 * Returns the capacity for all types of drinks
 	 * @return capacity
+	 * @author Cedric Schmitt & J. Sebastian Kirner
 	 */
 	public Map<DrinkType, Integer> getCapacity() {
 		return capacity;
@@ -181,6 +182,7 @@ public class Location {
 	/**
 	 * Returns all available types of Drinks
 	 * @return drinktypes
+	 * @author Cedric Schmitt & J. Sebastian Kirner
 	 */
 	public Map<DrinkType, Integer> getDrinks() {
 		return drinks;

@@ -3,6 +3,7 @@ package inheritance;
 /**
  * Creates a new subclass "WaterNonSparkling" for DrinkType with given properties.
  * @see DrinkType
+ * @author Cedric Schmitt & J. Sebastian Kirner
  */
 public class WaterNonSparkling extends DrinkType {
     private final BottleType bottleType;
@@ -10,6 +11,7 @@ public class WaterNonSparkling extends DrinkType {
     /**
      * Creates properties "maxBottles", "type" and "bottleType".
      * @param bottleType kind of bottle (glass or plastic)
+     * @author Cedric Schmitt & J. Sebastian Kirner
      */
     public WaterNonSparkling(BottleType bottleType) {
         this.maxBottles = 6;
