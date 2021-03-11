@@ -4,6 +4,7 @@ package inheritance;
  * Defines possible materials.
  * @see WaterNonSparkling
  * @see WaterSparkling
+ * @author Cedric Schmitt & J. Sebastian Kirner
  */
 public enum BottleType {
     GLAS("Glas"), PLASTIC("Plastik");

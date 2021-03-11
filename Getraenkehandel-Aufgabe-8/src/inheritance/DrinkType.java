@@ -6,6 +6,7 @@ import java.util.Objects;
  * Creates a class "DrinkType".
  * It contains standard methods for its subclasses like getter, setter and hashCode
  * just like special ones like boxesToBottles or bottlesToBoxes.
+ * @author Cedric Schmitt & J. Sebastian Kirner
  */
 public abstract class DrinkType {
 	protected String type = "";

@@ -10,6 +10,7 @@ import java.util.Map;
 
 /**
  * Converts the given data into external formats like XML or CSV.
+ * @author Cedric Schmitt & J. Sebastian Kirner
  */
 
 public class DataExporter {
@@ -83,7 +84,7 @@ public class DataExporter {
     /**
      * Converts the given location into a XML formatted string.
      *
-     * @param location      Location
+     * @param location Location
      * @param includeHeader boolean if the header should be included
      * @return String in XML format
      */

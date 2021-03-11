@@ -3,6 +3,7 @@ package inheritance;
 /**
  * Creates a new subclass "OrangeJuice" for DrinkType with given properties.
  * @see DrinkType
+ * @author Cedric Schmitt & J. Sebastian Kirner
  */
 public class OrangeJuice extends DrinkType {
     private final int fruitContent;
