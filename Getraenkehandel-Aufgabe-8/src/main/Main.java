@@ -21,9 +21,7 @@ public class Main {
 			locations.get(2).addDrink(new OrangeJuice(20), 200);
 			locations.get(2).removeDrink(locations.get(2).getDrinkTypes()[0], 50);
 			locations.get(2).moveDrinks(locations.get(1), locations.get(2).getDrinkTypes()[0], 2);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		} catch (Exception e) {}
 
 		// String s = DataExporter.getLocationsDataInJSONFormat(locations);
 		// locations.get(2).getDrinkTypes()[0]
