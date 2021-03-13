@@ -44,8 +44,11 @@ public class Location {
 	 * Sets the capacity for this location
 	 * @param drinkType
 	 * @param amount
+	 * @throws Exception 
 	 */
-	public void setCapacity(DrinkType drinkType, int amount) {
+	public void setCapacity(DrinkType drinkType, int amount) throws Exception {
+		if(amount < 0)
+			throw new Exception("Negative value not valid!");
 		capacity.put(drinkType, amount);
 		this.drinks.put(drinkType, 0);
 	}
@@ -82,8 +85,11 @@ public class Location {
 	 * @param drinkType
 	 * @param amount
 	 * @return success
+	 * @throws Exception 
 	 */
-	public boolean addDrink(DrinkType drinkType, int amount) {
+	public boolean addDrink(DrinkType drinkType, int amount) throws Exception {
+		if(amount < 0)
+			throw new Exception("Negative value not valid!");
 		if (this.getDrinkCapacity(drinkType) < this.getDrinkAmount(drinkType) + amount)
 			return false; // not enough capacity
 		this.drinks.put(drinkType, this.getDrinkAmount(drinkType) + amount);
@@ -95,8 +101,11 @@ public class Location {
 	 * @param drinkType
 	 * @param amount
 	 * @return success
+	 * @throws Exception 
 	 */
-	public boolean removeDrink(DrinkType drinkType, int amount) {
+	public boolean removeDrink(DrinkType drinkType, int amount) throws Exception {
+		if(amount < 0)
+			throw new Exception("Negative value not valid!");
 		if (this.getDrinkAmount(drinkType) < amount)
 			return false; // not enough to remove
 		this.drinks.put(drinkType, this.getDrinkAmount(drinkType) - amount);
@@ -118,8 +127,11 @@ public class Location {
 	 * @param drinkType
 	 * @param boxes
 	 * @return success
+	 * @throws Exception 
 	 */
-	public boolean moveDrinks(Location to, DrinkType drinkType, int boxes) {
+	public boolean moveDrinks(Location to, DrinkType drinkType, int boxes) throws Exception {
+		if(boxes <0)
+			throw new Exception("Negative value not valid!");
 		int bottles = drinkType.boxesToBottles(boxes);
 		if (this.getDrinkAmount(drinkType) < bottles || to.getMissing(drinkType) < bottles)
 			return false; // When not enough drinks in origin or not enough space in destiny
