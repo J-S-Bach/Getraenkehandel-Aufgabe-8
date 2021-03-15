@@ -1,5 +1,7 @@
 package main;
 
+import java.util.Arrays;
+
 import inheritance.*;
 
 /**
@@ -44,12 +46,10 @@ public class LocationManager {
 			standort2.setCapacity(new Beer(7), 150);
 		} catch (Exception e) {
 		}
-
 		central = zentral;
 		// System.out.println(central.toString());
 		locations[0] = standort1;
 		locations[1] = standort2;
-
 	}
 
 	/**
