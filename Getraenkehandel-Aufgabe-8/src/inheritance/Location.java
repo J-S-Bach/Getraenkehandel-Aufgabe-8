@@ -8,6 +8,7 @@ import java.util.Set;
 
 /**
  * Location class
+ * 
  * @author Simon Hoim
  * @author Felix Köhler
  */
@@ -15,9 +16,10 @@ public class Location {
 	protected String name = "";
 	protected Map<DrinkType, Integer> capacity = new HashMap<>();
 	protected Map<DrinkType, Integer> drinks = new HashMap<>();
-	
+
 	/**
 	 * Creates location object
+	 * 
 	 * @param name
 	 */
 	public Location(String name) {
@@ -26,6 +28,7 @@ public class Location {
 
 	/**
 	 * Returns the name of this location
+	 * 
 	 * @return name
 	 */
 	public String getName() {
@@ -34,6 +37,7 @@ public class Location {
 
 	/**
 	 * Sets the name of this location
+	 * 
 	 * @param name
 	 */
 	public void setName(String name) {
@@ -42,12 +46,13 @@ public class Location {
 
 	/**
 	 * Sets the capacity for this location
+	 * 
 	 * @param drinkType
 	 * @param amount
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public void setCapacity(DrinkType drinkType, int amount) throws Exception {
-		if(amount < 0)
+		if (amount < 0)
 			throw new Exception("Negative value not valid!");
 		capacity.put(drinkType, amount);
 		this.drinks.put(drinkType, 0);
@@ -55,6 +60,7 @@ public class Location {
 
 	/**
 	 * Returns the capacity of this location
+	 * 
 	 * @param drinkType
 	 * @return capacity
 	 */
@@ -65,6 +71,7 @@ public class Location {
 
 	/**
 	 * Returns all drinktypes that can be stored in this location
+	 * 
 	 * @return drinktypes
 	 */
 	public DrinkType[] getDrinkTypes() {
@@ -73,6 +80,7 @@ public class Location {
 
 	/**
 	 * Returns amount of drinks stored in this location
+	 * 
 	 * @param drinkType
 	 * @return amount
 	 */
@@ -82,13 +90,14 @@ public class Location {
 
 	/**
 	 * Adds drink to the storage of this location
+	 * 
 	 * @param drinkType
 	 * @param amount
 	 * @return success
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public boolean addDrink(DrinkType drinkType, int amount) throws Exception {
-		if(amount < 0)
+		if (amount < 0)
 			throw new Exception("Negative value not valid!");
 		if (this.getDrinkCapacity(drinkType) < this.getDrinkAmount(drinkType) + amount)
 			return false; // not enough capacity
@@ -98,13 +107,14 @@ public class Location {
 
 	/**
 	 * Removes drink from the storage of this location
+	 * 
 	 * @param drinkType
 	 * @param amount
 	 * @return success
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public boolean removeDrink(DrinkType drinkType, int amount) throws Exception {
-		if(amount < 0)
+		if (amount < 0)
 			throw new Exception("Negative value not valid!");
 		if (this.getDrinkAmount(drinkType) < amount)
 			return false; // not enough to remove
@@ -113,7 +123,9 @@ public class Location {
 	}
 
 	/**
-	 * Returns the amount of bottles that are missing for this location to be full of the certain drinktype
+	 * Returns the amount of bottles that are missing for this location to be full
+	 * of the certain drinktype
+	 * 
 	 * @param drinkType
 	 * @return amount
 	 */
@@ -122,15 +134,16 @@ public class Location {
 	}
 
 	/**
-	 * Moves drinks from this locations 
-	 * @param to destination
+	 * Moves drinks from this locations
+	 * 
+	 * @param to        destination
 	 * @param drinkType
 	 * @param boxes
 	 * @return success
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public boolean moveDrinks(Location to, DrinkType drinkType, int boxes) throws Exception {
-		if(boxes <0)
+		if (boxes < 0)
 			throw new Exception("Negative value not valid!");
 		int bottles = drinkType.boxesToBottles(boxes);
 		if (this.getDrinkAmount(drinkType) < bottles || to.getMissing(drinkType) < bottles)
@@ -142,14 +155,15 @@ public class Location {
 
 	/**
 	 * Fills this location from a certain location with specified drinktype
+	 * 
 	 * @param drinkType
-	 * @param from source
+	 * @param from      source
 	 * @throws Exception
 	 */
 	public void fillFromLocation(DrinkType drinkType, Location from) throws Exception {
 		int missingAmount = drinkType.movableBottles(this.getMissing(drinkType));
 		if (from.getDrinkAmount(drinkType) < missingAmount) {
-			missingAmount = from.getDrinkAmount(drinkType);	//set amount to max of "from"
+			missingAmount = from.getDrinkAmount(drinkType); // set amount to max of "from"
 			throw new Exception("Not enough " + drinkType.type + " -> Filling with max!");
 		}
 		this.addDrink(drinkType, missingAmount);
@@ -158,6 +172,7 @@ public class Location {
 
 	/**
 	 * Fills every drinktype of this location from certain location
+	 * 
 	 * @param from source
 	 * @throws Exception
 	 */
@@ -168,12 +183,36 @@ public class Location {
 	}
 
 	/**
+	 * Returns the amount of glass and plastic bottles of this location as an integer array
+	 * @return [glassBoxes, plasticBottles]
+	 */
+	public int[] getBottleTypeBoxes() {
+		int glassBoxes = 0;
+		int plasticBoxes = 0;
+		for (Map.Entry<DrinkType, Integer> entry : drinks.entrySet()) {
+			if (entry.getKey() instanceof WaterNonSparkling) {
+				if (((WaterNonSparkling) entry.getKey()).getBottleType().equals(BottleType.GLAS))
+					glassBoxes += entry.getKey().movableBottles(entry.getValue());
+				else
+					plasticBoxes += entry.getKey().movableBottles(entry.getValue());
+			}
+			if (entry.getKey() instanceof WaterSparkling) {
+				if (((WaterSparkling) entry.getKey()).getBottleType().equals(BottleType.GLAS))
+					glassBoxes += entry.getKey().movableBottles(entry.getValue());
+				else
+					plasticBoxes += entry.getKey().movableBottles(entry.getValue());
+			}
+		}
+		return new int[] { glassBoxes, plasticBoxes };
+	}
+
+	/**
 	 * Returns this location as a string
 	 */
 	@Override
 	public String toString() {
 		StringBuilder out = new StringBuilder();
-		out.append(this.getName()+":\n");
+		out.append(this.getName() + ":\n");
 		for (DrinkType dt : this.getDrinkTypes()) {
 			out.append(dt.getType() + ": " + this.getDrinkAmount(dt) + "/" + this.getDrinkCapacity(dt) + " Bottles ("
 					+ dt.bottlesToBoxes(this.getDrinkAmount(dt)) + "/" + dt.bottlesToBoxes(this.getDrinkCapacity(dt))
@@ -182,8 +221,9 @@ public class Location {
 		return out.toString();
 	}
 
-  /**
+	/**
 	 * Returns the capacity for all types of drinks
+	 * 
 	 * @return capacity
 	 * @author Cedric Schmitt & J. Sebastian Kirner
 	 */
@@ -193,6 +233,7 @@ public class Location {
 
 	/**
 	 * Returns all available types of Drinks
+	 * 
 	 * @return drinktypes
 	 * @author Cedric Schmitt & J. Sebastian Kirner
 	 */
