@@ -20,7 +20,7 @@ public class Location {
 	/**
 	 * Creates location object
 	 * 
-	 * @param name
+	 * @param name Name of this Location
 	 */
 	public Location(String name) {
 		this.name = name;
@@ -29,7 +29,7 @@ public class Location {
 	/**
 	 * Returns the name of this location
 	 * 
-	 * @return name
+	 * @return name name of this location
 	 */
 	public String getName() {
 		return this.name;
@@ -38,7 +38,7 @@ public class Location {
 	/**
 	 * Sets the name of this location
 	 * 
-	 * @param name
+	 * @param name Name of this location
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -47,9 +47,9 @@ public class Location {
 	/**
 	 * Sets the capacity for this location
 	 * 
-	 * @param drinkType
-	 * @param amount
-	 * @throws Exception
+	 * @param drinkType Specific DrinkType
+	 * @param amount Max Capacity
+	 * @throws Exception Error if negative value
 	 */
 	public void setCapacity(DrinkType drinkType, int amount) throws Exception {
 		if (amount < 0)
@@ -61,8 +61,8 @@ public class Location {
 	/**
 	 * Returns the capacity of this location
 	 * 
-	 * @param drinkType
-	 * @return capacity
+	 * @param drinkType Specific DrinkType
+	 * @return capacity Capacity of this DrinkType
 	 */
 	public int getDrinkCapacity(DrinkType drinkType) {
 		Integer a = capacity.get(drinkType);
@@ -72,7 +72,7 @@ public class Location {
 	/**
 	 * Returns all drinktypes that can be stored in this location
 	 * 
-	 * @return drinktypes
+	 * @return drinktypes all DrinkTypes in this location
 	 */
 	public DrinkType[] getDrinkTypes() {
 		return drinks.keySet().toArray(new DrinkType[drinks.keySet().size()]);
@@ -81,8 +81,8 @@ public class Location {
 	/**
 	 * Returns amount of drinks stored in this location
 	 * 
-	 * @param drinkType
-	 * @return amount
+	 * @param drinkType Specific DrinkType
+	 * @return amount Stored bottles
 	 */
 	public int getDrinkAmount(DrinkType drinkType) {
 		return drinks.get(drinkType);
@@ -91,10 +91,10 @@ public class Location {
 	/**
 	 * Adds drink to the storage of this location
 	 * 
-	 * @param drinkType
-	 * @param amount
-	 * @return success
-	 * @throws Exception
+	 * @param drinkType Specific DrinkType
+	 * @param amount Bottles to add
+	 * @return success True if adding succeeded
+	 * @throws Exception Error if negative value
 	 */
 	public boolean addDrink(DrinkType drinkType, int amount) throws Exception {
 		if (amount < 0)
@@ -108,10 +108,10 @@ public class Location {
 	/**
 	 * Removes drink from the storage of this location
 	 * 
-	 * @param drinkType
-	 * @param amount
-	 * @return success
-	 * @throws Exception
+	 * @param drinkType Specific DrinkType
+	 * @param amount Bottles to remove
+	 * @return success True if removing succeeded
+	 * @throws Exception Error if negative value
 	 */
 	public boolean removeDrink(DrinkType drinkType, int amount) throws Exception {
 		if (amount < 0)
@@ -126,8 +126,8 @@ public class Location {
 	 * Returns the amount of bottles that are missing for this location to be full
 	 * of the certain drinktype
 	 * 
-	 * @param drinkType
-	 * @return amount
+	 * @param drinkType Specific DrinkType
+	 * @return amount Bottles that are missing for the storage to be full
 	 */
 	public int getMissing(DrinkType drinkType) {
 		return this.getDrinkCapacity(drinkType) - this.getDrinkAmount(drinkType);
@@ -136,11 +136,11 @@ public class Location {
 	/**
 	 * Moves drinks from this locations
 	 * 
-	 * @param to        destination
-	 * @param drinkType
-	 * @param boxes
-	 * @return success
-	 * @throws Exception
+	 * @param to Location where drink should be moved to
+	 * @param drinkType Specific DrinkType
+	 * @param boxes Amount of boxes to move
+	 * @return success True if moving succeeded
+	 * @throws Exception Error if negative value
 	 */
 	public boolean moveDrinks(Location to, DrinkType drinkType, int boxes) throws Exception {
 		if (boxes < 0)
@@ -156,9 +156,9 @@ public class Location {
 	/**
 	 * Fills this location from a certain location with specified drinktype
 	 * 
-	 * @param drinkType
-	 * @param from      source
-	 * @throws Exception
+	 * @param drinkType Specific DrinkType
+	 * @param from Source location where drinks are taken from
+	 * @throws Exception Error if negative value
 	 */
 	public void fillFromLocation(DrinkType drinkType, Location from) throws Exception {
 		int missingAmount = drinkType.movableBottles(this.getMissing(drinkType));
@@ -173,8 +173,8 @@ public class Location {
 	/**
 	 * Fills every drinktype of this location from certain location
 	 * 
-	 * @param from source
-	 * @throws Exception
+	 * @param from Source location where drinks are taken from
+	 * @throws Exception Error if negative value
 	 */
 	public void fillEveryDrinkFromLocation(Location from) throws Exception {
 		for (DrinkType dt : this.getDrinkTypes()) {
@@ -184,7 +184,7 @@ public class Location {
 
 	/**
 	 * Returns the amount of glass and plastic bottles of this location as an integer array
-	 * @return [glassBoxes, plasticBottles]
+	 * @return [glassBoxes, plasticBottles] array with amount of glass and plastic bottles
 	 */
 	public int[] getBottleTypeBoxes() {
 		int glassBoxes = 0;
