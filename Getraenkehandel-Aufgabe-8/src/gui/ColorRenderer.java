@@ -48,6 +48,7 @@ class ColorRenderer extends JLabel implements TableCellRenderer {
 			}
 		}
 
+		// gets 20 percent of capacity
 		Double twentyPercentOfCapacity = Math
 				.ceil(Double.parseDouble((String) listOfColumnNames.get(4)) * twentyPercent);
 
