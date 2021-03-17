@@ -73,8 +73,8 @@ public class LocationManager {
 	/**
 	 * Fills every location from central storage
 	 * 
-	 * @param locations
-	 * @throws Exception
+	 * @param locations Locations to fill
+	 * @throws Exception Error if negative value
 	 */
 	public void fillLocations(Location[] locations) throws Exception {
 		for (Location l : locations) {
