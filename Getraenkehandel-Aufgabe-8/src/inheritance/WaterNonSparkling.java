@@ -3,6 +3,7 @@ package inheritance;
 /**
  * Creates a new subclass "WaterNonSparkling" for DrinkType with given properties.
  * @see DrinkType
+ * @author Cedric Schmitt & J. Sebastian Kirner
  */
 public class WaterNonSparkling extends DrinkType {
     private final BottleType bottleType;
